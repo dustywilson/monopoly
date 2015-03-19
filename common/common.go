@@ -9,42 +9,40 @@ type Board interface {
 
 // Space is an implementation of a Monopoly board space
 type Space interface {
-	Type() SpaceType
-	Owned() bool
-}
-
-// SpaceType is the type of space on the board
-type SpaceType interface {
+	Name() string
 }
 
 // RewardSpace is a space that provides a reward for landing on it (Go)
 type RewardSpace interface {
-	SpaceType
+	Space
+	Reward() int
+	PassReward() int
 }
 
 // PenaltySpace is a space that charges a penalty for landing on it (taxes)
 type PenaltySpace interface {
-	SpaceType
+	Space
 }
 
 // CardSpace is a space that has an associated card deck (Chance / Community Chest)
 type CardSpace interface {
-	SpaceType
+	Space
 }
 
 // PropertySpace is a space that is an ownable property
 type PropertySpace interface {
-	SpaceType
+	Space
+	Owned() bool
 }
 
 // GotoSpace is a space that causes you to move your token elsewhere (Go To Jail)
 type GotoSpace interface {
-	SpaceType
+	Space
 }
 
 // CaptiveSpace is a space that causes the player to be held captive until matching certain criteria (Jail)
 type CaptiveSpace interface {
-	SpaceType
+	Space
 }
 
 // Player is the player token and player attributes

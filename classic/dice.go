@@ -8,10 +8,10 @@ type Dice struct {
 }
 
 // dice2d6 is the standard pair of 6-sided dice.
-var dice2d6 = &Dice{dice: []Die{die1d6, die1d6}}
+var dice2d6 = Dice{dice: []Die{die1d6, die1d6}}
 
 // Roll rolls the pair of dice and returns the sum
-func (d *Dice) Roll() int {
+func (d Dice) Roll() int {
 	v := 0
 	for _, die := range d.dice {
 		v = v + die.Roll()
@@ -28,6 +28,6 @@ type Die struct {
 var die1d6 = Die{sides: []int{1, 2, 3, 4, 5, 6}}
 
 // Roll rolls the die and returns the result
-func (d *Die) Roll() int {
+func (d Die) Roll() int {
 	return d.sides[rand.Int31n(int32(len(d.sides)))]
 }
